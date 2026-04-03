@@ -22,7 +22,7 @@ const Hero = () => {
     >
       {/* Background Image — locked as part of template theme */}
       <img
-        src="/bg-img.png"
+        src="/hero-bg-img.png"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-top"
