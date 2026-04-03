@@ -38,26 +38,6 @@ const CONTACT_ICON_MAP: Record<ContactItem['type'], React.ReactElement> = {
 };
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
-
-/**
- * Footer
- *
- * 4-column layout:
- *   Col 1 — Brand (logo, description, social icons)  → from site.config + footer.config
- *   Col 2 — First link group                          → from footer.config.linkColumns[0]
- *   Col 3 — Second link group                         → from footer.config.linkColumns[1]
- *   Col 4 — Contact details                           → from footer.config.contactItems
- *
- * SEO notes:
- * - <footer> is a native HTML5 landmark — no role needed.
- * - aria-label distinguishes this footer from any other <footer> on the page.
- * - <nav> inside the footer with aria-label lets screen reader users jump
- *   directly to footer navigation via landmark navigation.
- * - Social links use <a> (not <button>) because they navigate to external pages.
- * - Contact email uses an href="mailto:" link so it opens the user's mail client.
- * - Contact phone uses an href="tel:" link for tap-to-call on mobile.
- * - Copyright year is computed dynamically in the config — never goes stale.
- */
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
@@ -139,10 +119,6 @@ const Footer = () => {
           const isAnchor   = (href: string) => href.startsWith('#');
 
           return (
-            /*
-             * <nav> makes each link column a navigable landmark.
-             * aria-label distinguishes them (e.g. "Product links", "Company links").
-             */
             <nav key={column.heading} aria-label={`${column.heading} links`}>
               <h4 className="text-white font-semibold text-sm mb-5">
                 {column.heading}
@@ -159,7 +135,6 @@ const Footer = () => {
                       onClick={
                         isAnchor(href)
                           ? (e) => {
-                              // Smooth-scroll for internal anchor links
                               e.preventDefault();
                               document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }
@@ -181,11 +156,6 @@ const Footer = () => {
           <h4 className="text-white font-semibold text-sm mb-1">Contact Us</h4>
 
           {footerConfig.contactItems.map(({ id, label, value, type }) => {
-            /*
-             * Email and phone use semantic href values so browsers can
-             * open the mail client or dialler natively on click.
-             * Location has no href — it is just informational text.
-             */
             const href =
               type === 'email'    ? `mailto:${value}`            :
               type === 'phone'    ? `tel:${value.replace(/\s/g, '')}` :
@@ -203,12 +173,6 @@ const Footer = () => {
 
                 <div>
                   <p className="text-gray-400 text-xs mb-0.5">{label}</p>
-
-                  {/*
-                   * Multi-line values (e.g. address) are split on \n and
-                   * each line rendered as its own <p>.
-                   * Email and phone wrap in an <a> for interactivity.
-                   */}
                   {href ? (
                     <a
                       href={href}

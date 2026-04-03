@@ -118,10 +118,10 @@ const footerConfig: FooterConfig = {
       heading: 'Company',
       links: [
         { label: 'About Us',        href: '#about'           },
-        { label: 'Careers',         href: '/careers'         }, // create this page or remove this link
+        { label: 'Careers',         href: '#home'         }, 
         { label: 'Contact',         href: '#subscribe'       },
-        { label: 'Privacy Policy',  href: '/privacy-policy'  }, // create this page or remove this link
-        { label: 'Terms of Service', href: '/terms'          }, // create this page or remove this link
+        { label: 'Privacy Policy',  href: '#home'  }, 
+        { label: 'Terms of Service', href: '#home'          }, 
       ],
     },
   ],
