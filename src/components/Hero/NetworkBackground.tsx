@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 
 interface Node {
@@ -108,13 +108,6 @@ const NetworkBackground = () => {
     const controlY = midY + perpY * curvature;
     
     return `M ${x1} ${y1} Q ${controlX} ${controlY} ${x2} ${y2}`;
-  };
-
-  // Helper function to calculate path length for a quadratic bezier curve
-  const getPathLength = (pathString: string) => {
-    const tempPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    tempPath.setAttribute("d", pathString);
-    return tempPath.getTotalLength();
   };
 
   return (
