@@ -41,8 +41,8 @@ const PlanCard = ({
         border transition-colors duration-300
         ${
           highlighted
-            ? 'bg-gradient-to-b from-[#020207]/80 to-[#1B3563]/80 border-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.12)]'
-            : 'bg-gradient-to-b from-[#020207]/80 to-[#1B3563]/80 border-white/10 hover:border-white/20'
+            ? 'bg-gradient-to-b from-[#020207]/80 to-[#1B3563]/80 border-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.12)] hover:cursor-pointer'
+            : 'bg-gradient-to-b from-[#020207]/80 to-[#1B3563]/80 border-white/10 hover:border-white/20 hover:cursor-pointer'
         }
       `}
     >

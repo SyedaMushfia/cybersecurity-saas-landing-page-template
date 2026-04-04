@@ -116,7 +116,7 @@ const Services = () => {
 
                 {/* ── BACK FACE (description — revealed on hover) ───────────
                     Locked: card background image and overlay are theme assets. */}
-                <div className="absolute inset-0 rounded-b-2xl border-x border-b border-[#1B3563]/50 overflow-hidden">
+                <div className="absolute inset-0 rounded-b-2xl border-x border-b border-[#1B3563]/50 overflow-hidden hover:cursor-pointer">
                   {/* Card background image — locked */}
                   <div className="absolute inset-0" aria-hidden="true">
                     <img
@@ -141,7 +141,7 @@ const Services = () => {
                 <motion.div
                   animate={{ y: hoveredCard === index ? -320 : 0 }}
                   transition={HOVER_SPRING}
-                  className="absolute inset-0 bg-gradient-to-b from-[#020207] via-[#020207] to-[#1B3563] backdrop-blur-md border-x border-b border-[#1B3563]/50 rounded-b-2xl shadow-2xl cursor-pointer"
+                  className="absolute inset-0 bg-gradient-to-b from-[#020207] via-[#020207] to-[#1B3563] backdrop-blur-md border-x border-b border-[#1B3563]/50 rounded-b-2xl shadow-2xl hover:cursor-pointer"
                   aria-hidden={hoveredCard === index} // hidden from AT when description is visible
                 >
                   <div className="relative h-full flex flex-col items-center justify-center p-6">
