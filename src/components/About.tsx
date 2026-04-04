@@ -4,8 +4,8 @@
 // =============================================================================
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { Check } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+const CheckCircleIcon = React.lazy(() => import('@mui/icons-material/CheckCircle'))
 import aboutConfig from "../components/ConfigFiles/aboutConfig";
 
 const AboutSection = () => {
@@ -71,7 +71,7 @@ const AboutSection = () => {
           >
             <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-cyan-500/30 sm:border-2 shadow-2xl shadow-cyan-500/20">
               <img
-                src="./staff-working.png"
+                src="/staff-working.webp"
                 alt={aboutConfig.imageAlt}
                 className="w-full h-full object-cover aspect-video sm:aspect-4/3"
                 loading="lazy"
@@ -108,14 +108,14 @@ const AboutSection = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="flex items-center gap-2 sm:gap-2.5 mb-6"
+                  className="flex items-center gap-2 sm:gap-2.5"
                 >
                   {/* Decorative check icon */}
                   <div
                     className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-500/20 flex items-center justify-center"
                     aria-hidden="true"
                   >
-                    <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" strokeWidth={3} />
+                    <CheckCircleIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" strokeWidth={3} />
                   </div>
                   <span className="text-gray-300 text-xs sm:text-sm md:text-base">
                     {feature}
@@ -125,47 +125,45 @@ const AboutSection = () => {
             </ul>
 
             {/* ── Stat cards ────────────────────────────────────────────────── */}
-            <dl
-              className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4"
-              aria-label="Key statistics"
-            >
-              {aboutConfig.stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: stat.delay + 0.6 }}
-                  className="relative group"
-                >
-                  <div className="relative bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-cyan-500/30 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 hover:border-cyan-400/50 transition-all duration-300">
+          <dl className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" aria-label="Key statistics">
+            {aboutConfig.stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: stat.delay + 0.6 }}
+                className="relative group"
+              >
+                {/* ── Use <dt> and <dd> directly inside card ── */}
+                <div className="relative bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-cyan-500/30 rounded-lg sm:rounded-xl mt-8 p-3 sm:p-4 md:p-6 hover:border-cyan-400/50 transition-all duration-300">
 
-                    {/* Icon — decorative, aria-hidden */}
-                    <div className="flex justify-center mb-1.5 sm:mb-2 md:mb-3" aria-hidden="true">
-                      <div className="p-1.5 sm:p-2 bg-cyan-500/10 rounded-md sm:rounded-lg">
-                        <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-cyan-400" />
-                      </div>
+                  {/* Icon — decorative, aria-hidden */}
+                  <div className="flex justify-center mb-1.5 sm:mb-2 md:mb-3" aria-hidden="true">
+                    <div className="p-1.5 sm:p-2 bg-cyan-500/10 rounded-md sm:rounded-lg">
+                      <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-cyan-400" />
                     </div>
-
-                    <div className="text-center">
-                      {/* <dd> holds the prominent value */}
-                      <dd className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-0.5 sm:mb-1 m-0">
-                        {stat.value}
-                      </dd>
-                      {/* <dt> holds the descriptive label */}
-                      <dt className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight">
-                        {stat.label}
-                      </dt>
-                    </div>
-
-                    {/* Hover glow overlay — decorative, locked */}
-                    <div
-                      className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/5 group-hover:to-purple-500/5 rounded-lg sm:rounded-xl transition-all duration-300 pointer-events-none"
-                      aria-hidden="true"
-                    />
                   </div>
-                </motion.div>
-              ))}
-            </dl>
+
+                  <div className="text-center">
+                    {/* Descriptive label first (dt) */}
+                    <dt className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight">
+                      {stat.label}
+                    </dt>
+                    {/* Prominent value (dd) */}
+                    <dd className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mt-1">
+                      {stat.value}
+                    </dd>
+                  </div>
+
+                  {/* Hover glow overlay — decorative, locked */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/5 group-hover:to-purple-500/5 rounded-lg sm:rounded-xl transition-all duration-300 pointer-events-none"
+                    aria-hidden="true"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </dl>
           </motion.div>
         </div>
       </div>

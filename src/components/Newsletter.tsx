@@ -119,7 +119,7 @@ const Newsletter = () => {
         aria-hidden="true"
       >
         <img
-          src="./newsletter-img.png"
+          src="/newsletter-img.webp"
           alt=""
           className="w-full h-full object-cover object-center"
           loading="eager"   // in viewport on most screens — do not lazy-load

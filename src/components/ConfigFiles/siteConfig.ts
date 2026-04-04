@@ -12,7 +12,7 @@ const siteConfig = {
    *  Option B (text):  leave `logoSrc` as "" and set `logoText` instead.
    */
   logo: {
-    src:  '../logo.png', // set to "" to use text logo instead
+    src:  '/logo.webp', // set to "" to use text logo instead
     alt:  'Company logo',
     text: 'Acme',        // only shown when src is ""
   },

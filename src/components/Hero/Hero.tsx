@@ -22,9 +22,11 @@ const Hero = () => {
     >
       {/* Background Image — locked as part of template theme */}
       <img
-        src="/hero-bg-img.png"
+        src="/hero-bg-img.webp"
         alt=""
         aria-hidden="true"
+        fetchPriority="high"
+        loading="eager"
         className="absolute inset-0 h-full w-full object-cover object-top"
       />
 
@@ -81,7 +83,7 @@ const Hero = () => {
           >
             {heroConfig.headlinePrimary}
             <br />
-            <span className="text-white/90">{heroConfig.headlineAccent}</span>
+            <span className="text-white">{heroConfig.headlineAccent}</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -89,7 +91,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="mt-6 text-base sm:text-lg text-white/70 leading-relaxed"
+            className="mt-6 text-base sm:text-lg text-white leading-relaxed"
           >
             {heroConfig.subtext}
           </motion.p>

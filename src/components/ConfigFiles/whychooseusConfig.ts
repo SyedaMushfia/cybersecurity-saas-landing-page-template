@@ -58,7 +58,7 @@ const whychooseusConfig: WhyChooseUsConfig = {
   heading: "Built for startups that can't afford downtime",
 
   image: {
-    src: './why-choose-us-img.png',
+    src: '/why-choose-us-img.webp',
     alt: 'A security analyst reviewing live threat data on a monitor',
   },
 

@@ -6,14 +6,14 @@
 // =============================================================================
 
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import LocationOnIcon  from '@mui/icons-material/LocationOn';
-import EmailIcon       from '@mui/icons-material/Email';
-import PhoneIcon       from '@mui/icons-material/Phone';
-import InstagramIcon   from '@mui/icons-material/Instagram';
-import LinkedInIcon    from '@mui/icons-material/LinkedIn';
-import FacebookIcon    from '@mui/icons-material/Facebook';
-import PinterestIcon   from '@mui/icons-material/Pinterest';
+import React, { useEffect, useRef, useState } from 'react';
+const LocationOnIcon = React.lazy(() => import('@mui/icons-material/LocationOn'));
+const EmailIcon      = React.lazy(() => import('@mui/icons-material/Email'));
+const PhoneIcon      = React.lazy(() => import('@mui/icons-material/Phone'));
+const InstagramIcon  = React.lazy(() => import('@mui/icons-material/Instagram'));
+const LinkedInIcon   = React.lazy(() => import('@mui/icons-material/LinkedIn'));
+const FacebookIcon   = React.lazy(() => import('@mui/icons-material/Facebook'));
+const PinterestIcon  = React.lazy(() => import('@mui/icons-material/Pinterest'));
 
 import siteConfig   from '../components/ConfigFiles/siteConfig';
 import footerConfig from '../components/ConfigFiles/footerConfig';

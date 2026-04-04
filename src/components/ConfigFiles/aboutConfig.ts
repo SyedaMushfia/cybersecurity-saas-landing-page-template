@@ -4,19 +4,15 @@
 //  The component (AboutSection.tsx) should be left untouched.
 // =============================================================================
 
-import { Shield, Zap, Globe } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import React from 'react';
+const SecurityIcon = React.lazy(() => import('@mui/icons-material/Security'));
+const BoltIcon = React.lazy(() => import('@mui/icons-material/Bolt'));
+const PublicIcon = React.lazy(() => import('@mui/icons-material/Public'));
 
 // ─── TYPE DEFINITIONS ─────────────────────────────────────────────────────────
 
 export interface StatCard {
-  /**
-   * The Lucide icon to display on the stat card.
-   * Import any icon from "lucide-react" and pass it here.
-   * See full icon list at: https://lucide.dev/icons
-   * Default icons used: Shield, Zap, Globe
-   */
-  icon: LucideIcon;
+  icon: React.LazyExoticComponent<React.ComponentType<any>>;
 
   /**
    * The headline number or value shown large on the card.
@@ -100,19 +96,19 @@ const aboutConfig: AboutConfig = {
 
   stats: [
     {
-      icon:  Shield,
+      icon:  SecurityIcon,
       value: "120k+",
       label: "Threats Detected",
       delay: 0.2,
     },
     {
-      icon:  Zap,
+      icon:  BoltIcon,
       value: "96%",
       label: "Alert Accuracy",
       delay: 0.4,
     },
     {
-      icon:  Globe,
+      icon:  PublicIcon,
       value: "12+",
       label: "Regions Covered",
       delay: 0.6,

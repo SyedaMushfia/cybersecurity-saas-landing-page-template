@@ -56,7 +56,7 @@ const testimonialsConfig: TestimonialsConfig = {
       quote:  'The 24/7 monitoring and real-time alerts saved us from multiple potential breaches. CyberPulse feels like having a full security team in one dashboard.',
       name:   'Lina Mathew',
       title:  'CTO, NovaTech',
-      image:  './testimonial-img3.png',
+      image:  '/testimonial-img3.webp',
       rating: 5,
     },
     {
@@ -64,7 +64,7 @@ const testimonialsConfig: TestimonialsConfig = {
       quote:  'I love how intuitive the dashboard is. We get instant visibility into our vulnerabilities and can respond immediately.',
       name:   'James Smith',
       title:  'Founder, CloudStream',
-      image:  './testimonial-img1.jpg',
+      image:  '/testimonial-img1.webp',
       rating: 5,
     },
     {
@@ -72,7 +72,7 @@ const testimonialsConfig: TestimonialsConfig = {
       quote:  'CyberPulse transformed how we approach security. The AI alerts and log intelligence are game-changers for a small team like ours.',
       name:   'Sophie Kim',
       title:  'Head of DevOps, ByteWave',
-      image:  './testimonial-img5.jpg',
+      image:  '/testimonial-img5.webp',
       rating: 5,
     },
     {
@@ -80,7 +80,7 @@ const testimonialsConfig: TestimonialsConfig = {
       quote:  "Within the first week, CyberPulse flagged a misconfigured S3 bucket we'd missed for months. The setup took under 10 minutes.",
       name:   'Marcus Osei',
       title:  'Lead Engineer, Stacklify',
-      image:  './testimonial-img2.jpg',
+      image:  '/testimonial-img2.webp',
       rating: 5,
     },
     {
@@ -88,7 +88,7 @@ const testimonialsConfig: TestimonialsConfig = {
       quote:  'Our compliance audits used to take days. Now CyberPulse generates the reports automatically and we sail through every review.',
       name:   'Priya Nair',
       title:  'VP Engineering, Orbiton',
-      image:  './testimonial-img4.png',
+      image:  '/testimonial-img4.webp',
       rating: 5,
     },
   ],

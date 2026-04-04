@@ -57,11 +57,11 @@ const trustedlogosConfig: TrustedLogosConfig = {
   heading: 'Trusted by over 500 startups',
 
   logos: [
-    { id: '1', name: 'MAQ Software',       imagePath: '/brand-logo1.png' },
-    { id: '2', name: 'Venture',            imagePath: '/brand-logo2.png' },
-    { id: '3', name: 'Salford University', imagePath: '/brand-logo3.png' },
-    { id: '4', name: 'Matrix Technology',  imagePath: '/brand-logo4.png' },
-    { id: '5', name: 'Xantrip',            imagePath: '/brand-logo5.png' },
+    { id: '1', name: 'MAQ Software',       imagePath: '/brand-logo1.webp' },
+    { id: '2', name: 'Venture',            imagePath: '/brand-logo2.webp' },
+    { id: '3', name: 'Salford University', imagePath: '/brand-logo3.webp' },
+    { id: '4', name: 'Matrix Technology',  imagePath: '/brand-logo4.webp' },
+    { id: '5', name: 'Xantrip',            imagePath: '/brand-logo5.webp' },
   ],
 
   scrollDuration: 20,

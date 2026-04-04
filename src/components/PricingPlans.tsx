@@ -4,8 +4,8 @@
 // =============================================================================
 
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import React, { useEffect, useRef, useState } from 'react';
+const CheckCircleIcon = React.lazy(() => import('@mui/icons-material/CheckCircle'))
 import pricingConfig from '../components/ConfigFiles/pricingConfig';
 import type { PricingPlan } from '../components/ConfigFiles/pricingConfig';
 
@@ -181,7 +181,7 @@ const PricingPlans = () => {
       <div className="absolute -inset-40 opacity-90" aria-hidden="true">
         <div
           className="absolute -inset-40"
-          style={{ backgroundImage: 'url("./bg-image.png")' }}
+          style={{ backgroundImage: 'url("./bg-image.webp")' }}
         />
       </div>
 

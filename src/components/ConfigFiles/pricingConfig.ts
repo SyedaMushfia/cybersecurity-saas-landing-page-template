@@ -81,7 +81,7 @@ const pricingConfig: PricingConfig = {
       name:     'Starter',
       subtitle: 'For early-stage startups',
       price:    49,
-      icon:     '../security-shield.png',
+      icon:     '/security-shield.webp',
       ctaHref:  '#subscribe', // Replace with your Stripe / checkout URL when ready
       features: [
         '24/7 system monitoring',
@@ -97,7 +97,7 @@ const pricingConfig: PricingConfig = {
       name:        'Pro',
       subtitle:    'For growing SaaS teams',
       price:       149,
-      icon:        '../radar.png',
+      icon:        '/radar.webp',
       highlighted: true,      // This plan gets extra visual emphasis — the recommended plan
       ctaHref:     '#subscribe', // Replace with your Stripe / checkout URL when ready
       features: [
@@ -114,7 +114,7 @@ const pricingConfig: PricingConfig = {
       name:     'Enterprise',
       subtitle: 'For high-security environments',
       price:    249,
-      icon:     '../network.png',
+      icon:     '/network.webp',
       ctaHref:  '#subscribe', // Replace with your Stripe / checkout URL when ready
       features: [
         'Everything in Pro',

@@ -1,16 +1,18 @@
-import About from './components/About'
+import { lazy, Suspense } from 'react'
 import BackToTop from './components/BackToTop'
-import Footer from './components/Footer'
 import Hero from './components/Hero/Hero'
-import HowItWorks from './components/HowItWorks'
-import LiveMetricsSection from './components/LiveMetricsSection'
 import Navbar from './components/Navbar/Navbar'
-import Newsletter from './components/Newsletter'
-import PricingPlans from './components/PricingPlans'
-import Services from './components/Services'
-import Testimonials from './components/Testimonials'
 import TrustedLogos from './components/TrustedLogos'
-import WhyChooseUs from './components/WhyChooseUs'
+
+const About = lazy(() => import('./components/About'))
+const Services = lazy(() => import('./components/Services'))
+const HowItWorks = lazy(() => import('./components/HowItWorks'))
+const Testimonials = lazy(() => import('./components/Testimonials'))
+const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'))
+const LiveMetricsSection = lazy(() => import('./components/LiveMetricsSection'))
+const PricingPlans = lazy(() => import('./components/PricingPlans'))
+const Newsletter = lazy(() => import('./components/Newsletter'))
+const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
   return (
@@ -19,15 +21,17 @@ function App() {
         <Navbar />
         <Hero />
         <TrustedLogos />
-        <About />
-        <Services />
-        <HowItWorks />
-        <Testimonials />
-        <WhyChooseUs />
-        <LiveMetricsSection />
-        <PricingPlans />
-        <Newsletter />
-        <Footer />
+        <Suspense fallback={null}>
+          <About />
+          <Services />
+          <HowItWorks />
+          <Testimonials />
+          <WhyChooseUs />
+          <LiveMetricsSection />
+          <PricingPlans />
+          <Newsletter />
+          <Footer />
+        </Suspense>
         <BackToTop />
       </div>
     </>

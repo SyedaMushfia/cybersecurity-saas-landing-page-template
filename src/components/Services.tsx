@@ -49,7 +49,7 @@ const Services = () => {
       <div className="absolute inset-0 opacity-70" aria-hidden="true">
         <div
           className="absolute inset-0"
-          style={{ backgroundImage: `url("./bg-image.png")` }}
+          style={{ backgroundImage: `url("/bg-image.webp")` }}
         />
       </div>
 
@@ -120,8 +120,9 @@ const Services = () => {
                   {/* Card background image — locked */}
                   <div className="absolute inset-0" aria-hidden="true">
                     <img
-                      src="./services-card.jpg"
+                      src="/services-card.webp"
                       alt=""
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                     {/* Dark overlay — locked */}
@@ -150,7 +151,8 @@ const Services = () => {
                     <div className="mb-6">
                       <div className="relative w-30 h-30 sm:w-30 sm:h-30 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border-2 border-cyan-400/50 flex items-center justify-center">
                         <service.icon
-                          className="w-10 h-10 sm:w-12 sm:h-12 text-cyan-400"
+                          className="text-cyan-400"
+                          fontSize="large"
                           strokeWidth={1.5}
                           aria-hidden="true"
                         />

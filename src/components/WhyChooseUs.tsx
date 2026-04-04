@@ -7,25 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import whyChooseUsConfig from '../components/ConfigFiles/whychooseusConfig';
 
-// ─── Locked constants ─────────────────────────────────────────────────────────
-// Design and behaviour decisions baked into the template.
-// Clients should not need to change these.
-
-/** Milliseconds each feature row stays active before auto-advancing */
 const FEATURE_INTERVAL_MS = 3000;
 
-// ─── FeatureRow sub-component ─────────────────────────────────────────────────
+// ─── FeatureRow ───────────────────────────────────────────────────────────────
 
-/**
- * Renders a single clickable feature row.
- *
- * When active it shows:
- *  - A dark animated background panel
- *  - A gradient progress bar at the bottom that fills over FEATURE_INTERVAL_MS
- *
- * SEO note: <h3> is used for the feature title so it sits correctly in the
- * document outline below the section's <h2> heading.
- */
 const FeatureRow = ({
   title,
   description,
@@ -46,7 +31,7 @@ const FeatureRow = ({
     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
     className="relative cursor-pointer rounded-xl overflow-hidden px-7 py-10 mb-2 last:mb-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400"
   >
-    {/* Animated highlight background — only rendered when this row is active */}
+    {/* Animated highlight background */}
     <AnimatePresence>
       {isActive && (
         <motion.div
@@ -57,38 +42,37 @@ const FeatureRow = ({
           animate={{ opacity: 1, scaleX: 1 }}
           exit={{   opacity: 0, scaleX: 0.97 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          style={{
-            background:      '#0d1f3c',
-            transformOrigin: 'left center',
-          }}
+          style={{ background: '#0d1f3c', transformOrigin: 'left center' }}
         />
       )}
     </AnimatePresence>
 
-    {/* Row content */}
     <div className="relative z-10">
-      <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-        {title}
-      </h3>
-      <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-        {description}
-      </p>
+      <h3 className="text-base sm:text-lg font-bold text-white mb-2">{title}</h3>
+      <p  className="text-sm sm:text-base text-gray-400 leading-relaxed">{description}</p>
     </div>
 
-    {/*
-     * Progress bar — animates from 0% to 100% width over FEATURE_INTERVAL_MS.
-     * Gives users a visual cue of when the next feature will auto-activate.
-     * aria-hidden because it is purely decorative timing feedback.
-     */}
+    {/* Progress bar */}
     {isActive && (
-      <motion.div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 h-[2px] rounded-full"
-        style={{ background: 'linear-gradient(90deg, #06b6d4, #8b5cf6)' }}
-        initial={{ width: '0%' }}
-        animate={{ width: '100%' }}
-        transition={{ duration: FEATURE_INTERVAL_MS / 1000, ease: 'linear' }}
-      />
+      <>
+        <style>{`
+          @keyframes wcu-progress {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
+          }
+          .wcu-bar {
+            animation: wcu-progress ${FEATURE_INTERVAL_MS}ms linear forwards;
+            transform-origin: left center;
+            will-change: transform;
+          }
+        `}</style>
+        <div
+          key="progress"
+          aria-hidden="true"
+          className="wcu-bar absolute bottom-0 left-0 h-[2px] w-full rounded-full"
+          style={{ background: 'linear-gradient(90deg, #06b6d4, #8b5cf6)' }}
+        />
+      </>
     )}
   </div>
 );
@@ -96,7 +80,6 @@ const FeatureRow = ({
 // ─── Main component ───────────────────────────────────────────────────────────
 
 const WhyChooseUs = () => {
-  // Pull all customisable content from config
   const { heading, image, features } = whyChooseUsConfig;
 
   const [isVisible,   setIsVisible]   = useState(false);
@@ -105,7 +88,6 @@ const WhyChooseUs = () => {
   const sectionRef  = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // ── Intersection Observer: fire reveal animation once section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
@@ -115,11 +97,6 @@ const WhyChooseUs = () => {
     return () => observer.disconnect();
   }, []);
 
-  /**
-   * startInterval — (re)starts the auto-advance timer.
-   * Called on mount and after every manual row click so the timer
-   * always resets from zero when the user interacts.
-   */
   const startInterval = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
@@ -127,7 +104,6 @@ const WhyChooseUs = () => {
     }, FEATURE_INTERVAL_MS);
   };
 
-  // Start autoplay on mount, clean up on unmount
   useEffect(() => {
     startInterval();
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
@@ -135,18 +111,10 @@ const WhyChooseUs = () => {
 
   const handleRowClick = (i: number) => {
     setActiveIndex(i);
-    startInterval(); // reset timer so clicked row gets its full display time
+    startInterval();
   };
 
   return (
-    /*
-     * <section> with aria-labelledby ties the landmark to its visible <h2>
-     * so screen reader users can identify this section when navigating
-     * by landmarks (e.g. via the rotor on iOS VoiceOver).
-     *
-     * itemScope / itemType adds Schema.org ItemList markup so search engines
-     * can understand the list of features as structured content.
-     */
     <section
       ref={sectionRef}
       aria-labelledby="why-choose-us-heading"
@@ -156,30 +124,19 @@ const WhyChooseUs = () => {
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
 
-        {/* ── Section header ── */}
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-center mb-10 sm:mb-12"
         >
-          {/*
-           * "WHY CHOOSE US" is a decorative label — not a heading in the
-           * document outline. aria-hidden prevents double-reading by screen
-           * readers since the <h2> below is the real section label.
-           */}
           <p
             aria-hidden="true"
             className="text-cyan-400 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-3"
           >
             WHY CHOOSE US
           </p>
-
-          {/*
-           * <h2> is the accessible section heading.
-           * id matches aria-labelledby on the <section> above.
-           * Content is pulled from config so clients can freely rename it.
-           */}
           <h2
             id="why-choose-us-heading"
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-4"
@@ -188,25 +145,16 @@ const WhyChooseUs = () => {
           </h2>
         </motion.div>
 
-        {/* ── Two-column body: feature rows (left) + image (right) ── */}
+        {/* Two-column body */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col lg:flex-row gap-5 lg:gap-6 items-stretch"
         >
-
           {/* LEFT: feature rows */}
-          <div
-            className="flex-1 flex flex-col"
-            role="list"
-            aria-label="Key features"
-          >
+          <div className="flex-1 flex flex-col" role="list" aria-label="Key features">
             {features.map((feature, i) => (
-              /*
-               * role="listitem" pairs with the role="list" above.
-               * itemProp="itemListElement" marks each feature for Schema.org.
-               */
               <div key={i} role="listitem" itemProp="itemListElement">
                 <FeatureRow
                   title={feature.title}
@@ -230,11 +178,6 @@ const WhyChooseUs = () => {
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover"
-                /*
-                 * loading="eager" — this image is in the viewport on most
-                 * screens so we do NOT lazy-load it. Lazy-loading above-the-fold
-                 * images hurts LCP (Largest Contentful Paint).
-                 */
                 loading="eager"
                 decoding="async"
                 width={630}
@@ -242,7 +185,6 @@ const WhyChooseUs = () => {
               />
             </div>
           </motion.div>
-
         </motion.div>
       </div>
     </section>

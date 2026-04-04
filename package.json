@@ -16,7 +16,6 @@
     "@mui/material": "^7.3.9",
     "@rive-app/react-canvas": "^4.27.3",
     "framer-motion": "^12.33.0",
-    "lucide-react": "^0.564.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
