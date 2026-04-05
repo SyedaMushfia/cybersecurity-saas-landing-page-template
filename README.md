@@ -6,7 +6,7 @@ A production-ready landing page template for cybersecurity and SaaS startups. Bu
 
 ## Preview
 
-
+https://github.com/user-attachments/assets/b6b987ed-ce22-4051-a740-0599e7d70413
 
 ---
 
