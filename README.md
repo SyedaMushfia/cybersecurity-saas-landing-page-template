@@ -81,6 +81,9 @@ sudo systemctl restart nginx
 Once deployed, the application can be accessed via:
 
 Local machine: http://localhost
+
+OR
+
 VM network: http://<vm-ip-address>
 
 ## Features
