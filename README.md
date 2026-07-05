@@ -84,7 +84,7 @@ Local machine: http://localhost
 
 OR
 
-VM network: http://<vm-ip-address>
+VM network: http://vm-ip-address (From your host machine - Windows/Linux/Mac)
 
 ## Features
 
