@@ -1,6 +1,10 @@
 # CyberPulse — Cybersecurity SaaS Landing Page Template
 
-A production-ready landing page template for cybersecurity and SaaS startups. Built with React 18, TypeScript, Framer Motion, and Tailwind CSS. Dark theme, animated components, fully config-driven customisation, and SEO-optimised markup throughout.
+A production-ready cybersecurity and SaaS landing page template designed for developers, startups, and freelancers who want a modern, fully customisable frontend foundation.
+
+Built with React 18, TypeScript, Framer Motion, and Tailwind CSS, this template is structured for easy reuse, fast branding changes, and smooth deployment.
+
+It is designed as a plug-and-play template that anyone can customise and adapt for their own SaaS product, agency, or cybersecurity startup.
 
 ---
 
@@ -25,6 +29,59 @@ https://cybersecurity-saas-landing-page-tem.vercel.app/
 - **MUI Icons 5** — icon set
 
 ---
+
+## Deployment (Local Nginx on Ubuntu VM)
+
+This project can also be deployed manually on a local Ubuntu VM using Nginx as a static web server.
+Vite generates a production-ready build in the dist/ folder, which is then served directly by Nginx.
+
+### Build the project
+```
+npm install
+npm run build
+```
+
+This generates a production build inside: dist/
+
+### Deploy to Nginx
+Remove any existing files and copy the new build:
+
+```
+sudo rm -rf /var/www/html/*
+sudo cp -r dist/* /var/www/html/
+```
+
+### Nginx Configuration
+Ensure your Nginx server is configured to support client-side routing:
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+Then restart Nginx:
+
+```
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+### Access the application
+
+Once deployed, the application can be accessed via:
+
+Local machine: http://localhost
+VM network: http://<vm-ip-address>
 
 ## Features
 
